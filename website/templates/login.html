@@ -1,54 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="register-container">
-    <h1>Register</h1>
+<div class="login-container">
+    <h1>Login</h1>
     <form method="POST">
         {% csrf_token %}
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
         <div class="form-group">
             <input type="text" name="username" placeholder="Username" required>
         </div>
         <div class="form-group">
-            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="password" name="password" placeholder="Password" required>
         </div>
-        <div class="form-group">
-            <input type="text" name="last_name" placeholder="Last Name" required>
-        </div>
-        <div class="form-group">
-            <input type="email" name="email" placeholder="Email Address" required>
-        </div>
-        <div class="form-group">
-            <input type="password" name="password1" placeholder="Password" required>
-            <small class="help-text">
-                • Your password must contain at least 8 characters<br>
-                • Your password can't be entirely numeric<br>
-                • Your password can't be a commonly used password<br>
-                • Your password can't be too similar to your other personal information
-            </small>
-        </div>
-        <div class="form-group">
-            <input type="password" name="password2" placeholder="Confirm Password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">REGISTER</button>
+        <button type="submit" class="btn btn-primary">LOGIN</button>
     </form>
 </div>
 
 <style>
-    .register-container {
-        max-width: 500px;
+    .login-container {
+        max-width: 400px;
         margin: 8rem auto;
         text-align: center;
     }
 
-    .register-container h1 {
+    .login-container h1 {
         font-size: 2rem;
         font-weight: 500;
         margin-bottom: 2rem;
         color: var(--primary-color);
-    }
-
-    form {
-        text-align: left;
     }
 
     .form-group {
@@ -69,15 +49,6 @@
         border-color: var(--primary-color);
         box-shadow: none;
         outline: none;
-    }
-
-    .help-text {
-        display: block;
-        color: var(--secondary-color);
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-        opacity: 0.7;
-        line-height: 1.6;
     }
 
     .btn-primary {
@@ -102,6 +73,10 @@
         color: var(--secondary-color);
         opacity: 0.7;
     }
-</style>
 
+    .error {
+        color: #ff6b6b;
+        margin-bottom: 1rem;
+    }
+</style>
 {% endblock %}

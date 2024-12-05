@@ -1,21 +1,135 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="col-md-6 offset-md-3">
-<h1>Add Record</h1>
-<br/>
-
-<form method="POST">
-	{% csrf_token %}
-
-	{{ form.as_p }}
-
-<br/>
-  <button type="submit" class="btn btn-secondary">Update Record</button>
-
-</form>
-
-
+<div class="form-container">
+    <h1>Update Record</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field }}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <small class="error-text">{{ error }}</small>
+                    {% endfor %}
+                {% endif %}
+                {% if field.help_text %}
+                    <small class="help-text">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">UPDATE RECORD</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">BACK</a>
+    </form>
 </div>
 
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 8rem auto;
+        text-align: center;
+    }
+
+    .form-container h1 {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+    }
+
+    form {
+        background-color: var(--card-background);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        text-align: left;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    input, select, textarea {
+        background-color: rgba(26, 26, 26, 0.98);
+        border: 1px solid var(--border-color);
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+        width: 100%;
+        border-radius: 8px;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        border-color: var(--primary-color);
+        box-shadow: none;
+        outline: none;
+    }
+
+    .error-text {
+        display: block;
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .help-text {
+        display: block;
+        color: var(--secondary-color);
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+        opacity: 0.7;
+    }
+
+    .btn-primary {
+        background-color: rgba(128, 128, 128, 0.5);
+        border: none;
+        padding: 0.8rem 2rem;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        border-radius: 8px;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+        color: var(--primary-color);
+        width: 48%;
+        display: inline-block;
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--primary-color);
+        width: 48%;
+        display: inline-block;
+        text-align: center;
+        padding: 0.8rem 2rem;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        border-radius: 8px;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+        background-color: rgba(128, 128, 128, 0.7);
+        transform: translateY(-2px);
+    }
+
+    input::placeholder, select::placeholder, textarea::placeholder {
+        color: var(--secondary-color);
+        opacity: 0.7;
+    }
+
+    /* Override Django's default form error styles */
+    .errorlist {
+        color: #ff6b6b;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.5rem 0;
+        font-size: 0.8rem;
+    }
+
+    ul.errorlist li {
+        color: #ff6b6b;
+    }
+</style>
 {% endblock %}

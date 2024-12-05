@@ -99,3 +99,30 @@ def update_record(request, pk):
 	else:
 		messages.success(request, "You Must Be Logged In...")
 		return redirect('home')
+
+
+def landing(request):
+	if request.user.is_authenticated:
+		return redirect('home')
+	return render(request, 'landing.html')
+
+def logout_view(request):
+	logout(request)
+	return redirect('landing')
+
+def login_view(request):
+	if request.method == 'POST':
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return redirect('home')
+		else:
+			# Handle invalid login
+			return render(request, 'login.html', {'error': 'Invalid credentials'})
+	return render(request, 'login.html')
+
+def register_user(request):
+	# Registration logic here
+	return render(request, 'register.html')
