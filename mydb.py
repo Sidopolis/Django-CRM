@@ -10,7 +10,13 @@ dataBase = mysql.connector.connect(
 # prepare a cursor object
 cursorObject = dataBase.cursor()
 
-# Create a database
-cursorObject.execute("CREATE DATABASE sidhant")
+# Check if the database exists before creating it
+try:
+    cursorObject.execute("CREATE DATABASE sidhant")
+except mysql.connector.errors.DatabaseError as err:
+    if err.errno == 1007:  # Error code for "database exists"
+        print("Database 'sidhant' already exists.")
+    else:
+        raise  # Re-raise the exception if it's a different error
 
 print("All Done!")

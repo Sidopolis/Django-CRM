@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="landing-container fade-in">
+    <div class="hero-section">
+        <h1 class="hero-title">Modern CRM</h1>
+        <p class="hero-subtitle">Elevate your customer relationships with our minimal, powerful platform</p>
+        <div class="cta-buttons">
+            {% if user.is_authenticated %}
+                <a href="{% url 'home' %}" class="btn btn-primary btn-lg">Dashboard</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Get Started</a>
+                <a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="features-section">
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Powerful Management</h3>
+            <p>Streamline your workflow</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Enterprise Security</h3>
+            <p>Your data, protected</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Modern Interface</h3>
+            <p>Beautiful on every device</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .landing-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 6rem 0;
+    }
+
+    .hero-title {
+        font-size: 5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        background: linear-gradient(to right, #fff, #a0a0a0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        color: var(--secondary-color);
+        margin-bottom: 3rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .features-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+    }
+
+    .feature-card {
+        background: var(--card-background);
+        padding: 3rem 2rem;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: var(--primary-color);
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .feature-card p {
+        color: var(--secondary-color);
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .btn-lg {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: rgba(128, 128, 128, 0.5);
+        border: none;
+        color: var(--primary-color);
+    }
+
+    .btn-outline-light {
+        background-color: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--primary-color);
+    }
+
+    .btn-primary:hover, .btn-outline-light:hover {
+        transform: translateY(-2px);
+        background-color: rgba(128, 128, 128, 0.7);
+    }
+</style>
+{% endblock %} 
