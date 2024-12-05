@@ -1,3 +1,5 @@
+<img width="959" alt="crm" src="https://github.com/user-attachments/assets/70f40694-82b9-4a26-8860-52c669d8da0d">
+
 # Modern CRM
 
 A minimal and powerful Customer Relationship Management system built with Django. This modern CRM helps businesses manage their customer relationships efficiently with a clean, dark-themed interface.
